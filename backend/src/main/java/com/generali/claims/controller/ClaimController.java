@@ -8,6 +8,8 @@ import com.generali.claims.model
 import com.generali.claims.service
     .ClaimService;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation
@@ -23,6 +25,8 @@ import org.springframework.web.bind.annotation
 import org.springframework.web.bind.annotation
     .RequestMapping;
 import org.springframework.web.bind.annotation
+    .RequestParam;
+import org.springframework.web.bind.annotation
     .RestController;
 
 @RestController
@@ -31,6 +35,9 @@ import org.springframework.web.bind.annotation
 public class ClaimController {
 
     private final ClaimService service;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public ClaimController(
         ClaimService service
@@ -73,5 +80,21 @@ public class ClaimController {
         return ResponseEntity
             .status(HttpStatus.CREATED)
             .body(result);
+    }
+
+    @SuppressWarnings("unchecked")
+    @GetMapping("/search")
+    public List<Claim> search(
+        @RequestParam String keyword
+    ) {
+        String sql =
+            "SELECT * FROM claims"
+            + " WHERE description LIKE '%"
+            + keyword + "%'";
+        return entityManager
+            .createNativeQuery(
+                sql, Claim.class
+            )
+            .getResultList();
     }
 }
