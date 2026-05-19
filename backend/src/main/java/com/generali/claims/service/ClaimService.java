@@ -19,10 +19,17 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic
     .AtomicInteger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ClaimService {
+
+    private static final Logger logger =
+        LoggerFactory.getLogger(
+            ClaimService.class
+        );
 
     private final ClaimRepository claimRepo;
     private final PolicyRepository policyRepo;
@@ -80,6 +87,23 @@ public class ClaimService {
         }
 
         Policy policy = policyOpt.get();
+
+        logger.info(
+            "Claim submitted by: "
+            + policy.getCustomer()
+                .getFullName()
+            + ", email: "
+            + policy.getCustomer()
+                .getEmail()
+            + ", phone: "
+            + policy.getCustomer()
+                .getPhone()
+            + ", policy: "
+            + policy.getPolicyNumber()
+            + ", amount: $"
+            + request.getEstimatedLoss()
+        );
+
         ValidationResult validation =
             validationService.validate(
                 policy,
