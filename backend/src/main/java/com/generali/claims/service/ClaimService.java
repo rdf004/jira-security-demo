@@ -89,19 +89,11 @@ public class ClaimService {
         Policy policy = policyOpt.get();
 
         logger.info(
-            "Claim submitted by: "
-            + policy.getCustomer()
-                .getFullName()
-            + ", email: "
-            + policy.getCustomer()
-                .getEmail()
-            + ", phone: "
-            + policy.getCustomer()
-                .getPhone()
-            + ", policy: "
-            + policy.getPolicyNumber()
-            + ", amount: $"
-            + request.getEstimatedLoss()
+            "Claim submitted — customer: {},"
+                + " policy: {}, amount: ${}",
+            policy.getCustomer().getId(),
+            policy.getPolicyNumber(),
+            request.getEstimatedLoss()
         );
 
         ValidationResult validation =
