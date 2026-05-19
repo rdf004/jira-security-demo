@@ -1,0 +1,160 @@
+.dashboard-header {
+  margin-bottom: 24px;
+}
+
+.dashboard-header h2 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 32px;
+  font-weight: 300;
+  color: #20252B;
+  margin: 0 0 16px 0;
+}
+
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.filter-select {
+  padding: 8px 14px;
+  border: 1px solid #B0B2B3;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: #20252B;
+  background: #FFFFFF;
+}
+
+.claim-count {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: #707070;
+}
+
+.loading,
+.no-claims {
+  text-align: center;
+  padding: 48px;
+  color: #707070;
+  font-family: 'Roboto', sans-serif;
+}
+
+.claims-table {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Roboto', sans-serif;
+}
+
+thead {
+  background: #F6F6F6;
+}
+
+th {
+  padding: 12px 16px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #707070;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: left;
+  border-bottom: 2px solid #B0B2B3;
+  white-space: nowrap;
+}
+
+td {
+  padding: 14px 16px;
+  font-size: 14px;
+  color: #20252B;
+  border-bottom: 1px solid #F6F6F6;
+}
+
+.claim-row {
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.claim-row:hover {
+  background: #F6F6F6;
+}
+
+.claim-id {
+  font-weight: 500;
+  color: #C21B17;
+}
+
+.amount {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: #F6F6F6;
+  color: #707070;
+}
+
+.routing-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.badge-success {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.badge-warning {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.badge-danger {
+  background: #fce4ec;
+  color: #C21B17;
+}
+
+.missing-indicator {
+  font-size: 12px;
+  color: #C21B17;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 10px 30px;
+  border: 2px solid #C21B17;
+  border-radius: 5px;
+  background: #C21B17;
+  color: #FFFFFF;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.44px;
+  cursor: pointer;
+  text-decoration: none;
+  margin-top: 16px;
+}
+
+.btn-primary:hover {
+  background: #AA1B17;
+  border-color: #AA1B17;
+}

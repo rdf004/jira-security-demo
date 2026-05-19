@@ -1,0 +1,97 @@
+<div class="loading" *ngIf="loading">
+  Loading claim details...
+</div>
+
+<div class="confirmation"
+     *ngIf="!loading && claim">
+  <div class="success-banner"
+       [ngClass]="getStatusClass()">
+    <div class="banner-icon">&#10003;</div>
+    <h2>Claim Submitted Successfully</h2>
+    <p class="claim-number">
+      {{ claim.claimNumber }}
+    </p>
+  </div>
+
+  <div class="result-card">
+    <div class="result-header">
+      <span class="result-label">
+        ROUTING RESULT
+      </span>
+      <span class="result-badge"
+            [ngClass]="getStatusClass()">
+        {{ getStatusLabel() }}
+      </span>
+    </div>
+
+    <div class="result-details">
+      <div class="detail-grid">
+        <div class="detail-item">
+          <span class="label">
+            POLICY
+          </span>
+          <span class="value">
+            {{ claim.policy.policyNumber }}
+          </span>
+        </div>
+        <div class="detail-item">
+          <span class="label">
+            CLAIM TYPE
+          </span>
+          <span class="value">
+            {{ claim.claimType }}
+          </span>
+        </div>
+        <div class="detail-item">
+          <span class="label">
+            INCIDENT DATE
+          </span>
+          <span class="value">
+            {{ claim.incidentDate }}
+          </span>
+        </div>
+        <div class="detail-item">
+          <span class="label">
+            ESTIMATED LOSS
+          </span>
+          <span class="value">
+            ${{ claim.estimatedLoss }}
+          </span>
+        </div>
+      </div>
+
+      <div class="reasons-section"
+        *ngIf="claim.triageReasons?.length">
+        <h4>Routing Reasons</h4>
+        <ul>
+          <li *ngFor="let r
+            of claim.triageReasons">
+            {{ r }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="missing-section"
+        *ngIf="claim.missingDocuments?.length">
+        <h4>Missing Documents</h4>
+        <ul class="missing-list">
+          <li *ngFor="let d
+            of claim.missingDocuments">
+            {{ d }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <a routerLink="/policies"
+       class="btn-outline">
+      SUBMIT ANOTHER CLAIM
+    </a>
+    <a routerLink="/dashboard"
+       class="btn-primary">
+      VIEW DASHBOARD
+    </a>
+  </div>
+</div>
