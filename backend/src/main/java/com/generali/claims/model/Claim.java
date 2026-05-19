@@ -1,9 +1,9 @@
 package com.generali.claims.model;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -65,8 +65,8 @@ public class Claim {
         )
     )
     @Column(name = "document_name")
-    private List<String> documents =
-        new ArrayList<>();
+    private Set<String> documents =
+        new LinkedHashSet<>();
 
     @Enumerated(EnumType.STRING)
     private ClaimStatus status =
@@ -85,8 +85,8 @@ public class Claim {
         )
     )
     @Column(name = "reason")
-    private List<String> triageReasons =
-        new ArrayList<>();
+    private Set<String> triageReasons =
+        new LinkedHashSet<>();
 
     @ElementCollection(
         fetch = FetchType.EAGER
@@ -98,8 +98,8 @@ public class Claim {
         )
     )
     @Column(name = "document_name")
-    private List<String> missingDocuments =
-        new ArrayList<>();
+    private Set<String> missingDocuments =
+        new LinkedHashSet<>();
 
     @Column(length = 3000)
     private String adjusterSummary;
@@ -186,12 +186,12 @@ public class Claim {
         this.estimatedLoss = estimatedLoss;
     }
 
-    public List<String> getDocuments() {
+    public Set<String> getDocuments() {
         return documents;
     }
 
     public void setDocuments(
-        List<String> documents
+        Set<String> documents
     ) {
         this.documents = documents;
     }
@@ -214,22 +214,22 @@ public class Claim {
         this.triageResult = triageResult;
     }
 
-    public List<String> getTriageReasons() {
+    public Set<String> getTriageReasons() {
         return triageReasons;
     }
 
     public void setTriageReasons(
-        List<String> triageReasons
+        Set<String> triageReasons
     ) {
         this.triageReasons = triageReasons;
     }
 
-    public List<String> getMissingDocuments() {
+    public Set<String> getMissingDocuments() {
         return missingDocuments;
     }
 
     public void setMissingDocuments(
-        List<String> missingDocuments
+        Set<String> missingDocuments
     ) {
         this.missingDocuments = missingDocuments;
     }

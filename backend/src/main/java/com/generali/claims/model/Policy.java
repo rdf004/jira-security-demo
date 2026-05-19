@@ -1,7 +1,7 @@
 package com.generali.claims.model;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -63,7 +63,7 @@ public class Policy {
     )
     @Enumerated(EnumType.STRING)
     @Column(name = "claim_type")
-    private List<ClaimType> coveredClaimTypes;
+    private Set<ClaimType> coveredClaimTypes;
 
     @ElementCollection(
         fetch = FetchType.EAGER
@@ -75,7 +75,7 @@ public class Policy {
         )
     )
     @Column(name = "document_name")
-    private List<String> requiredDocuments;
+    private Set<String> requiredDocuments;
 
     public Policy() {
     }
@@ -140,22 +140,22 @@ public class Policy {
         this.endDate = endDate;
     }
 
-    public List<ClaimType> getCoveredClaimTypes() {
+    public Set<ClaimType> getCoveredClaimTypes() {
         return coveredClaimTypes;
     }
 
     public void setCoveredClaimTypes(
-        List<ClaimType> coveredClaimTypes
+        Set<ClaimType> coveredClaimTypes
     ) {
         this.coveredClaimTypes = coveredClaimTypes;
     }
 
-    public List<String> getRequiredDocuments() {
+    public Set<String> getRequiredDocuments() {
         return requiredDocuments;
     }
 
     public void setRequiredDocuments(
-        List<String> requiredDocuments
+        Set<String> requiredDocuments
     ) {
         this.requiredDocuments = requiredDocuments;
     }

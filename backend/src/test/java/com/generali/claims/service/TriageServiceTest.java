@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -62,8 +63,11 @@ class TriageServiceTest {
             sdf.parse("2026-01-01")
         );
         activePolicy.setCoveredClaimTypes(
-            Arrays.asList(
-                ClaimType.HOME_WATER_DAMAGE
+            new HashSet<>(
+                Arrays.asList(
+                    ClaimType
+                        .HOME_WATER_DAMAGE
+                )
             )
         );
 
@@ -95,8 +99,8 @@ class TriageServiceTest {
         claim.setEstimatedLoss(amount);
         claim.setMissingDocuments(
             missingDocs != null
-                ? missingDocs
-                : Collections.emptyList()
+                ? new HashSet<>(missingDocs)
+                : new HashSet<>()
         );
         claim.setDescription(
             "Water damage in kitchen"

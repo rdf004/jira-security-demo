@@ -14,6 +14,7 @@ import com.generali.claims.repository
     .PolicyRepository;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic
@@ -113,11 +114,16 @@ public class ClaimService {
         );
         claim.setDocuments(
             request.getDocuments() != null
-                ? request.getDocuments()
-                : new ArrayList<>()
+                ? new LinkedHashSet<>(
+                    request.getDocuments()
+                )
+                : new LinkedHashSet<>()
         );
         claim.setMissingDocuments(
-            validation.getMissingDocuments()
+            new LinkedHashSet<>(
+                validation
+                    .getMissingDocuments()
+            )
         );
         claim.setSubmittedAt(new Date());
         claim.setStatus(
@@ -131,7 +137,9 @@ public class ClaimService {
                 claim, reasons
             );
         claim.setTriageResult(triageResult);
-        claim.setTriageReasons(reasons);
+        claim.setTriageReasons(
+            new LinkedHashSet<>(reasons)
+        );
 
         if (triageResult == TriageResult
             .STRAIGHT_THROUGH_PROCESSING) {

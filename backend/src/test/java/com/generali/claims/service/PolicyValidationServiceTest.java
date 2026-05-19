@@ -16,6 +16,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -55,14 +56,19 @@ class PolicyValidationServiceTest {
             sdf.parse("2026-01-01")
         );
         activePolicy.setCoveredClaimTypes(
-            Arrays.asList(
-                ClaimType.HOME_WATER_DAMAGE
+            new HashSet<>(
+                Arrays.asList(
+                    ClaimType
+                        .HOME_WATER_DAMAGE
+                )
             )
         );
         activePolicy.setRequiredDocuments(
-            Arrays.asList(
-                "Photos of damage",
-                "Repair estimate"
+            new HashSet<>(
+                Arrays.asList(
+                    "Photos of damage",
+                    "Repair estimate"
+                )
             )
         );
 
@@ -81,12 +87,18 @@ class PolicyValidationServiceTest {
             sdf.parse("2024-01-01")
         );
         inactivePolicy.setCoveredClaimTypes(
-            Arrays.asList(
-                ClaimType.AUTO_COLLISION
+            new HashSet<>(
+                Arrays.asList(
+                    ClaimType.AUTO_COLLISION
+                )
             )
         );
         inactivePolicy.setRequiredDocuments(
-            Arrays.asList("Police report")
+            new HashSet<>(
+                Arrays.asList(
+                    "Police report"
+                )
+            )
         );
     }
 

@@ -5,6 +5,7 @@ import com.generali.claims.model.Policy;
 import com.generali.claims.model.ValidationResult;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -96,7 +97,7 @@ public class PolicyValidationService {
             || claimType == null) {
             return;
         }
-        List<ClaimType> covered =
+        Set<ClaimType> covered =
             policy.getCoveredClaimTypes();
         if (covered == null
             || !covered.contains(claimType)) {
@@ -117,7 +118,7 @@ public class PolicyValidationService {
         if (policy == null) {
             return;
         }
-        List<String> required =
+        Set<String> required =
             policy.getRequiredDocuments();
         if (required == null
             || required.isEmpty()) {
