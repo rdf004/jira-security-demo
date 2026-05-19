@@ -1,0 +1,133 @@
+<div class="loading" *ngIf="loading">
+  Loading claim details...
+</div>
+
+<div class="detail-page"
+     *ngIf="!loading && claim">
+
+  <div class="detail-header">
+    <div class="header-left">
+      <a routerLink="/dashboard"
+         class="back-link">
+        &larr; Back to Dashboard
+      </a>
+      <h2>{{ claim.claimNumber }}</h2>
+      <span class="routing-badge"
+            [ngClass]="getStatusClass()">
+        {{ getStatusLabel() }}
+      </span>
+    </div>
+  </div>
+
+  <div class="detail-grid">
+    <div class="info-card">
+      <h3>Claim Information</h3>
+      <div class="info-row">
+        <span class="label">Customer</span>
+        <span class="value">
+          {{ claim.policy.customer.fullName }}
+        </span>
+      </div>
+      <div class="info-row">
+        <span class="label">Policy</span>
+        <span class="value">
+          {{ claim.policy.policyNumber }}
+          ({{ claim.policy.policyType }})
+        </span>
+      </div>
+      <div class="info-row">
+        <span class="label">
+          Claim Type
+        </span>
+        <span class="value">
+          {{ claim.claimType }}
+        </span>
+      </div>
+      <div class="info-row">
+        <span class="label">
+          Incident Date
+        </span>
+        <span class="value">
+          {{ claim.incidentDate }}
+        </span>
+      </div>
+      <div class="info-row">
+        <span class="label">Location</span>
+        <span class="value">
+          {{ claim.incidentLocation }}
+        </span>
+      </div>
+      <div class="info-row">
+        <span class="label">
+          Estimated Loss
+        </span>
+        <span class="value amount">
+          ${{ claim.estimatedLoss }}
+        </span>
+      </div>
+      <div class="info-row">
+        <span class="label">Status</span>
+        <span class="value">
+          {{ claim.status }}
+        </span>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <h3>Triage Details</h3>
+      <div class="triage-result">
+        <span class="routing-badge large"
+              [ngClass]="getStatusClass()">
+          {{ getStatusLabel() }}
+        </span>
+      </div>
+
+      <div class="section"
+        *ngIf="claim.triageReasons?.length">
+        <h4>Routing Reasons</h4>
+        <ul>
+          <li *ngFor="let r
+            of claim.triageReasons">
+            {{ r }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="section missing"
+        *ngIf="
+          claim.missingDocuments?.length">
+        <h4>Missing Documents</h4>
+        <ul>
+          <li *ngFor="let d
+            of claim.missingDocuments">
+            {{ d }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="section"
+        *ngIf="claim.documents?.length">
+        <h4>Submitted Documents</h4>
+        <div class="doc-tags">
+          <span class="doc-tag"
+            *ngFor="let d
+              of claim.documents">
+            {{ d }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="description-card">
+    <h3>Incident Description</h3>
+    <p>{{ claim.description }}</p>
+  </div>
+
+  <div class="summary-card">
+    <h3>Adjuster Summary</h3>
+    <pre class="summary-text">{{
+      claim.adjusterSummary
+    }}</pre>
+  </div>
+</div>

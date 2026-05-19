@@ -1,0 +1,21 @@
+# Build output
+backend/target/
+frontend/dist/
+
+# Dependencies
+frontend/node_modules/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.project
+.classpath
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

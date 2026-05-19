@@ -1,0 +1,7 @@
+{
+  "straightThroughMaxAmount": 2000,
+  "adjusterReviewMinAmount": 2000,
+  "adjusterReviewMaxAmount": 25000,
+  "fraudThresholdAmount": 25000,
+  "duplicateWindowDays": 30
+}

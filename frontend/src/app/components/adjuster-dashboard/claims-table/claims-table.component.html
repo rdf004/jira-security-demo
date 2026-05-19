@@ -1,0 +1,98 @@
+<div class="dashboard-header">
+  <h2>Adjuster Dashboard</h2>
+  <div class="filter-bar">
+    <select class="filter-select"
+      [(ngModel)]="filterStatus"
+      (change)="applyFilter()">
+      <option value="">All Claims</option>
+      <option
+        value="STRAIGHT_THROUGH_PROCESSING">
+        Straight-Through
+      </option>
+      <option value="ADJUSTER_REVIEW">
+        Adjuster Review
+      </option>
+      <option
+        value="FRAUD_MANUAL_INVESTIGATION">
+        Fraud/Investigation
+      </option>
+    </select>
+    <span class="claim-count">
+      {{ filteredClaims.length }} claims
+    </span>
+  </div>
+</div>
+
+<div class="loading" *ngIf="loading">
+  Loading claims...
+</div>
+
+<div class="no-claims"
+  *ngIf="!loading
+    && filteredClaims.length === 0">
+  <p>No claims submitted yet.</p>
+  <a routerLink="/policies"
+     class="btn-primary">
+    SUBMIT A CLAIM
+  </a>
+</div>
+
+<div class="claims-table"
+     *ngIf="!loading
+       && filteredClaims.length > 0">
+  <table>
+    <thead>
+      <tr>
+        <th>CLAIM ID</th>
+        <th>CUSTOMER</th>
+        <th>POLICY TYPE</th>
+        <th>CLAIM TYPE</th>
+        <th>INCIDENT DATE</th>
+        <th>EST. LOSS</th>
+        <th>STATUS</th>
+        <th>ROUTING</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of filteredClaims"
+          (click)="viewDetail(c.id)"
+          class="claim-row">
+        <td class="claim-id">
+          {{ c.claimNumber }}
+        </td>
+        <td>
+          {{ c.policy.customer.fullName }}
+        </td>
+        <td>{{ c.policy.policyType }}</td>
+        <td>{{ c.claimType }}</td>
+        <td>{{ c.incidentDate }}</td>
+        <td class="amount">
+          ${{ c.estimatedLoss }}
+        </td>
+        <td>
+          <span class="status-badge">
+            {{ c.status }}
+          </span>
+        </td>
+        <td>
+          <span class="routing-badge"
+            [ngClass]="
+              getStatusClass(c.triageResult)
+            ">
+            {{ getStatusLabel(
+              c.triageResult
+            ) }}
+          </span>
+        </td>
+        <td>
+          <span class="missing-indicator"
+            *ngIf="c.missingDocuments?.length">
+            {{ c.missingDocuments.length }}
+            missing docs
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
