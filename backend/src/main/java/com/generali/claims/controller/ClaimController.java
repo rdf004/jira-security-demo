@@ -89,11 +89,13 @@ public class ClaimController {
     ) {
         String sql =
             "SELECT * FROM claims"
-            + " WHERE description LIKE '%"
-            + keyword + "%'";
+            + " WHERE description LIKE ?1";
         return entityManager
             .createNativeQuery(
                 sql, Claim.class
+            )
+            .setParameter(
+                1, "%" + keyword + "%"
             )
             .getResultList();
     }
